@@ -20,21 +20,7 @@ Add-ons Management: Automates the installation of essential EKS add-ons like VPC
 
 Directory Structure
 
-├── .github/
-│   └── workflows/
-│       └── terraform.yaml
-├── eks/
-│   ├── backend.tf
-│   ├── main.tf
-│   ├── variables.tf
-│   └── variables.tfvars
-└── module/
-    ├── eks.tf
-    ├── iam.tf
-    ├── vpc.tf
-    ├── gather.tf
-    └── variables.tf
-
+![alt text](image.png)
 
 Getting Started
 
