@@ -1,35 +1,58 @@
-# 🚀 Configuring Production-Ready EKS Clusters with Terraform and GitHub Actions
-[![LinkedIn](https://img.shields.io/badge/Connect%20with%20me%20on-LinkedIn-blue.svg)](https://www.linkedin.com/in/aman-devops/)
-[![Discord](https://img.shields.io/badge/Discord-7289DA?style=for-the-badge&logo=discord&logoColor=white)](https://discord.com/invite/jdzF8kTtw2)
-[![Medium](https://img.shields.io/badge/Medium-12100E?style=for-the-badge&logo=medium&logoColor=white)](https://medium.com/@amanpathakdevops)
-[![GitHub](https://img.shields.io/github/stars/AmanPathak-DevOps.svg?style=social)](https://github.com/AmanPathak-DevOps)
-[![Serverless](https://img.shields.io/badge/Serverless-%E2%9A%A1%EF%B8%8F-blueviolet)](https://www.serverless.com)
-[![AWS](https://img.shields.io/badge/AWS-%F0%9F%9B%A1-orange)](https://aws.amazon.com)
-[![Terraform](https://img.shields.io/badge/Terraform-%E2%9C%A8-lightgrey)](https://www.terraform.io)
+
+🚀 Project: Automating EKS Cluster Deployment with Terraform and GitHub Actions
+
+Overview
+
+This project focuses on provisioning a production-ready Amazon Elastic Kubernetes Service (EKS) cluster using Terraform, complemented by a GitHub Actions workflow for continuous integration and deployment (CI/CD). The infrastructure is designed for scalability, security, and automation, adhering to best practices in cloud-native deployments.
 
 ![EKS- GitHub Actions- Terraform](assets/Presentation1.gif)
 
-Welcome to the repository for **Configuring Production-Ready EKS Clusters with Terraform and Automating with GitHub Actions**! This repository accompanies my blog post and demonstrates the practical steps to set up and automate an EKS cluster.
+Key Features
 
-## 🌟 Overview
-This project covers:
-- **Infrastructure as Code (IaC)**: Use Terraform to define and manage your EKS cluster.
-- **CI/CD Automation**: Leverage GitHub Actions to automate deployments.
+Infrastructure as Code (IaC): Utilizes Terraform to define and manage AWS resources, ensuring consistent and repeatable deployments.
+Modular Architecture: Implements a modular structure separating concerns such as networking, IAM roles, and EKS configurations for better maintainability.
+CI/CD Pipeline: Integrates GitHub Actions to automate the deployment process, including plan, apply, and destroy stages, triggered via workflow dispatch with customizable inputs.
+Secure State Management: Stores Terraform state files in an encrypted S3 bucket with state locking enabled through DynamoDB to prevent concurrent modifications.
+Scalable Node Groups: Configures both On-Demand and Spot instance node groups to optimize cost and performance, with autoscaling capabilities.
+Private Networking: Sets up a VPC with public and private subnets, NAT gateways, and appropriate route tables to ensure secure and efficient network traffic flow.
+OIDC Integration: Establishes an OpenID Connect (OIDC) provider for the EKS cluster to facilitate fine-grained IAM role associations for Kubernetes service accounts.
+Add-ons Management: Automates the installation of essential EKS add-ons like VPC CNI, CoreDNS, kube-proxy, and AWS EBS CSI driver, ensuring the cluster is fully operational post-deployment.
 
-## 🌟 Comprehensive Guide
-For a detailed guide, please refer to my [blog post on Medium](https://medium.com/p/c046e8d44865).
+Directory Structure
 
-## 🤝 Contributing
-Contributions are welcome! Please open an issue or submit a pull request for any improvements or bug fixes.
+├── .github/
+│   └── workflows/
+│       └── terraform.yaml
+├── eks/
+│   ├── backend.tf
+│   ├── main.tf
+│   ├── variables.tf
+│   └── variables.tfvars
+└── module/
+    ├── eks.tf
+    ├── iam.tf
+    ├── vpc.tf
+    ├── gather.tf
+    └── variables.tf
 
-## 📄 License
-This project is licensed under the Apache 2.0 License. See the [LICENSE](LICENSE) file for details.
 
-## 🌐 Community Interaction
-- **Contribute**: Found an error or have valuable resources? Contribute to our learning on the [Discord Server](https://discord.com/invite/jdzF8kTtw2) !
-- **Discussions**: Join discussions, ask questions, and connect with fellow learners in the GitHub Discussions section.
+Getting Started
 
-## 📢 Spread the Word
-Share your journey with your network and tag me, [Aman Pathak](https://www.linkedin.com/in/aman-devops), when you post your blogs on LinkedIn. Let's learn together!
+1.Prerequisites:
 
-Happy learning and blogging! 🌟
+AWS account with programmatic access (Access Key ID and Secret Access Key).
+Terraform installed locally.
+GitHub repository with secrets configured for AWS credentials.
+
+2.Setup:
+Clone the repository.
+Navigate to the eks/ directory.
+Initialize Terraform: terraform init.
+Review and customize variables.tfvars as needed.
+
+3.Deployment:
+Trigger the GitHub Actions workflow manually.
+Provide the path to the .tfvars file and select the desired action (plan, apply, or destroy).
+
+
+
